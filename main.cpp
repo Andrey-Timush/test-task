@@ -1,5 +1,7 @@
 #include <iostream>
-#include "calc.h"
+extern "C" {
+	#include "calc.h"
+}
  
 using namespace std;
 
