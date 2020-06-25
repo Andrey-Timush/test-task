@@ -3,9 +3,9 @@
 Simple calculator for adding, subtracting, multiplying and dividing numbers.
 
 
-## Installation
+## Versions
 
-The installation procedures in Linux Ubuntu 20.04 64-bit LTS. 64-bit are shown here as examples.
+The program was written under Linux 20.04 LTS x86_x64. Cmake version 3.16.3
 
 ---
 
