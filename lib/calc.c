@@ -1,21 +1,21 @@
 #include "calc.h"
 
-int sum(int num1, int num2)
+float sum(float num1, float num2)
 {
    return num1 + num2;
 }
  
-int multi(int num1, int num2)
+float multi(float num1, float num2)
 {
    return num1 * num2;
 }
  
-int subtraction(int num1, int num2)
+float subtraction(float num1, float num2)
 {
    return num1 - num2;
 }
  
-int division(int num1, int num2)
+float division(float num1, float num2)
 {
    return num1 / num2;
 }

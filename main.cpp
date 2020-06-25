@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 extern "C" {
 	#include "calc.h"
 }
@@ -7,8 +8,12 @@ using namespace std;
 
 int main()
 {
+   ofstream fout;
+   fout.open("file.json");
+  
    char operation = 'c';
-   int num1, num2;
+   float num1, num2;
+   int k = 0;
  
    while(operation != 'e')
    {
@@ -20,27 +25,32 @@ int main()
          case '+':
                   cin >> num1;
                   cin >> num2;
-                  cout << num1 << "+" << num2 << "=" << sum(num1,num2) << endl;
+		  k++;
+                  fout << k << ")." << num1 << "+" << num2 << "=" << sum(num1,num2) << endl;
                   break;
          case '-':
                   cin >> num1;
                   cin >> num2;
-                  cout << num1 << "-" << num2 << "=" << subtraction(num1,num2) << endl;
+		  k++;
+                  fout << k << ")." << num1 << "-" << num2 << "=" << subtraction(num1,num2) << endl;
                   break;
          case '/':
                   cin >> num1;
                   cin >> num2;
-                  cout << num1 << "/" << num2 << "=" << division(num1,num2) << endl;
+		  k++;
+                  fout << k << "). " <<  num1 << "/" << num2 << "=" << division(num1,num2) << endl;
                   break;
          case '*':
                   cin >> num1;
                   cin >> num2;
-                  cout << num1 << "*" << num2 << "=" << multi(num1,num2) << endl;
+		  k++;
+                  fout << k << "). " << num1 << "*" << num2 << "=" << multi(num1,num2) << endl;
                   break;
          case 'e':
+		  fout.close();
                   return 0;
          default:
-                  cout << "Неправильный ввод" << endl;
+                  fout << "Неправильный ввод" << endl;
       }
    }
  

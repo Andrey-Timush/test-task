@@ -1,6 +1,0 @@
-/home/andrey/test-task/tmp/CMakeFiles/rebuild_cache.dir
-/home/andrey/test-task/tmp/CMakeFiles/edit_cache.dir
-/home/andrey/test-task/tmp/CMakeFiles/main.dir
-/home/andrey/test-task/tmp/lib/CMakeFiles/rebuild_cache.dir
-/home/andrey/test-task/tmp/lib/CMakeFiles/edit_cache.dir
-/home/andrey/test-task/tmp/lib/CMakeFiles/calc.dir
