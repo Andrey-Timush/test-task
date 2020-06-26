@@ -12,3 +12,5 @@ add_subdirectory(lib)
 
 target_link_libraries(main calc)
 
+
+

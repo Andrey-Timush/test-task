@@ -1,58 +1,103 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
+#include <string>
+#include <nlohmann/json.hpp>
 extern "C" {
 	#include "calc.h"
 }
- 
+using json = nlohmann::json; 
 using namespace std;
 
-int main()
+namespace ns {
+        struct expression {
+                int exprnumber;
+                float number1;
+                string operation;
+                float number2;
+                float result;
+        };
+}
+
+int main(int argc, char *argv[] )
 {
-   ofstream fout;
-   fout.open("file.json");
-  
-   char operation = 'c';
-   float num1, num2;
-   int k = 0;
+
+    if (argc!=4){
+        cout << "Вы ввели неправильное количество аргументов";
+    }else{
+    json js;
+
+    ofstream ojs("out.json");
+
  
-   while(operation != 'e')
-   {
-      cout << "Выберите операцию: сложение(+), вычитание(-), деление(/), умножение(*), выход (e):";
-      cin >> operation;
+    char operation = 'c';
+    float num1, num2, result;
+    int k = 0;
+
+       operation = argv[2][0];
+       num1 = atoi(argv[1]);
+       num2 = atoi(argv[3]);
  
-      switch(operation)
-      {
-         case '+':
-                  cin >> num1;
-                  cin >> num2;
+     switch(operation){
+     case '+':{
+//                  cin >> num1;
+//                  cin >> num2;
+                  k++;
+                  result = num1 + num2;
+                  ns::expression ex = {k, num1, "+", num2, result};
+                  js["exprnumber"] = ex.exprnumber;
+                  js["number1"] = ex.number1;
+                  js["operation"] = ex.operation;
+                  js["number2"] = ex.number2;
+                  js["result"] = ex.result;
+                  ojs << setw(4) << js << endl;
+     }break;
+     case '-':{
+//                  cin >> num1;
+//                  cin >> num2;
 		  k++;
-                  fout << k << ")." << num1 << "+" << num2 << "=" << sum(num1,num2) << endl;
-                  break;
-         case '-':
-                  cin >> num1;
-                  cin >> num2;
+                  result = num1 - num2;
+                  ns::expression ex = {k, num1, "-", num2, result};
+                  js["exprnumber"] = ex.exprnumber;
+                  js["number1"] = ex.number1;
+                  js["operation"] = ex.operation;
+                  js["number2"] = ex.number2;
+                  js["result"] = ex.result;
+                  ojs << setw(4) << js << endl;
+                 // fout << k << ")." << num1 << "-" << num2 << "=" << subtraction(num1,num2) << endl;
+     }break;
+     case '/':{
+//                  cin >> num1;
+//                  cin >> num2;
 		  k++;
-                  fout << k << ")." << num1 << "-" << num2 << "=" << subtraction(num1,num2) << endl;
-                  break;
-         case '/':
-                  cin >> num1;
-                  cin >> num2;
+                  result = num1 / num2;
+                  ns::expression ex = {k, num1, "/", num2, result};
+                  js["exprnumber"] = ex.exprnumber;
+                  js["number1"] = ex.number1;
+                  js["operation"] = ex.operation;
+                  js["number2"] = ex.number2;
+                  js["result"] = ex.result;
+                  ojs << setw(4) << js << endl;
+     }break;
+     case '*':{
+//                  cin >> num1;
+//                  cin >> num2;
 		  k++;
-                  fout << k << "). " <<  num1 << "/" << num2 << "=" << division(num1,num2) << endl;
+                  result = num1 * num2;
+                  ns::expression ex = {k, num1, "*", num2, result};
+                  js["exprnumber"] = ex.exprnumber;
+                  js["number1"] = ex.number1;
+                  js["operation"] = ex.operation;
+                  js["number2"] = ex.number2;
+                  js["result"] = ex.result;
+                  ojs << setw(4) << js << endl;
+     }break;
+     case 'e':{
+                  ojs.close();
                   break;
-         case '*':
-                  cin >> num1;
-                  cin >> num2;
-		  k++;
-                  fout << k << "). " << num1 << "*" << num2 << "=" << multi(num1,num2) << endl;
-                  break;
-         case 'e':
-		  fout.close();
-                  return 0;
-         default:
-                  fout << "Неправильный ввод" << endl;
-      }
-   }
- 
-   return 0;
+     }default:
+                  ojs << "Неправильный ввод" << endl;
+     }
+    }
+    return 0;
 }
